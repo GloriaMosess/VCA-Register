@@ -12,15 +12,18 @@
         android:id="@+id/floatingActionButton4"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginLeft="340dp"
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 
     <ListView
-        android:id="@+id/myviewls"
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="@color/cardview_dark_background"
         />
 
 </LinearLayout>
+
+

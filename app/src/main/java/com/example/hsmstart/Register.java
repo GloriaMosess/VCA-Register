@@ -1,11 +1,13 @@
 package com.example.hsmstart;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,39 +18,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Register extends AppCompatActivity {
-    private static AdapterView<ArrayAdapter> child_register;
-    private static ArrayAdapter ChildR;
+
     FloatingActionButton addVca;
-    //ListView child_register;
-    private EditText vcaId,name, age;
-    private static ArrayList<String> nlist;
-    //public Button save = findViewById(R.id.addbtn);
-    //ArrayAdapter ChildR;
-    String values[] = new String[0];
+
+
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
+    ListView listView;
+    ArrayList<String> listItem;
+    ArrayAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         addVca = findViewById(R.id.floatingActionButton4);
-        child_register = (AdapterView<ArrayAdapter>) findViewById(R.id.myviewls);
-
-        vcaId = findViewById(R.id.vcaId);
-        name = findViewById(R.id.name);
-        age = findViewById(R.id.age);
-        nlist = new ArrayList<>();
-
-        String values [] = {"gloria", "moses", "gabby", "phaless"};
-
-
-        child_register.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Register.this, "You clicked on:" + values[position], Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
+         listView = findViewById(R.id.listView);
+         listItem = new ArrayList();
 
         addVca.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,28 +44,27 @@ public class Register extends AppCompatActivity {
         });
 
 
+
+        data();
+
     }
 
-    //   public void addItem(String item){
-//       if (item.getid() == R.id.addbtn){
-//           String text =  save.getText().toString();{
-//               if (text.equalsIgnoreCase("next")) {
-//                   Intent childintent = new Intent(Register.this, Vca.class);
-//                   startActivity(childintent);
-//               }  else{
-//                   Toast.makeText(getApplicationContext(), "Incorrect Information", Toast.LENGTH_SHORT).show();
-//               }
-//           }
-//       }
-    public String addItem(String item) {
+    public void data(){
+        Cursor cursor = databaseHelper.displayData();
+        if(cursor.getCount()==0){
+            Toast.makeText(Register.this, "No data to show", Toast.LENGTH_LONG).show();
+        } else {
+            while (cursor.moveToNext()){
+                listItem.add("Country:\t"+"Zambia");
+                listItem.add("ID:\t"+cursor.getString(0));
+                listItem.add("Full Name:\t"+cursor.getString(1));
+                listItem.add("Age:\t"+cursor.getString(2)+"\n\n");
 
-        child_register.setAdapter(ChildR);
-        ArrayList<String> values  = new ArrayList<String>();
-        ChildR = new ArrayAdapter(this, android.R.layout.simple_list_item_1, Arrays.asList(values));
+            }
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,listItem
+            );
+            listView.setAdapter(adapter);
+        }
 
-        values.add(item);
-            ChildR.notifyDataSetChanged();
-
-            return item;
     }
 }

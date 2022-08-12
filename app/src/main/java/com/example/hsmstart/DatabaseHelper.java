@@ -2,10 +2,17 @@ package com.example.hsmstart;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.jar.Attributes;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private String id;
+    private String name;
+    private String age;
 
     public DatabaseHelper(Context context) {
         super(context, "hsmstart.db", null, 1);
@@ -13,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table VCA(id Text)");
+        db.execSQL("Create Table VCA(id Text,name Text,age Text)");
 
     }
 
@@ -22,18 +29,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
        db.execSQL("Drop Table VCA");
     }
 
-    public Boolean vcaRegistration(String id){
+    public Boolean vcaRegistration(String id, String name, String age) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id",id);
+          contentValues.put("id",id);
+            contentValues.put("name",name);
+        contentValues.put("age",age);
+
         Long result = database.insert("VCA",null,contentValues);
         if(result == -1){
             return false;
         } else {
             return true;
         }
+    }
 
-
+    public Cursor displayData(){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from VCA", null);
+        return cursor;
     }
 
 }
