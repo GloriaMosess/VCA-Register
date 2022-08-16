@@ -2,8 +2,11 @@ package com.example.hsmstart;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.jar.Attributes;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -13,27 +16,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table VCA(id Text)");
+        db.execSQL("Create Table VCA(id Text,name Text,age Text,username,password)");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       db.execSQL("Drop Table VCA");
+        db.execSQL("Drop Table VCA");
     }
 
-    public Boolean vcaRegistration(String id){
+    public Boolean vcaRegistration(String id, String name, String age,String username, String password) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id",id);
-        Long result = database.insert("VCA",null,contentValues);
-        if(result == -1){
-            return false;
-        } else {
-            return true;
-        }
+        contentValues.put("id", id);
+        contentValues.put("name", name);
+        contentValues.put("age", age);
+        contentValues.put("username", username);
+        contentValues.put("password", password);
 
+        Long result = database.insert("VCA", null, contentValues);
+        return result != -1;
+    }
 
+    public Cursor displayData() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from VCA", null);
+        return cursor;
     }
 
 }

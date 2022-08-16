@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     Button login;
+    public String item;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         navigation = findViewById(R.id.navigation);
         toolbar = findViewById(R.id.toolbar);
 
+
         setSupportActionBar(toolbar);
 
 
@@ -45,18 +48,31 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         // connect to next page
+login.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+//        String userTxt = "admin";
+//        String passwordTxt = "1234";
+//
+//        String name = username.getText().toString();
+//        String pass = password.getText().toString();
+//
+//        Boolean checkResults = userlogin.UserLogin(name,pass);
+//        if(checkResults == true){
+            Intent i = new Intent(MainActivity.this,Register.class);
+            startActivity(i);
+//        } else{
+//            Toast.makeText(MainActivity.this, "Password or Username is invalid", Toast.LENGTH_LONG).show();
+//        }
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Register.class);
-                intent.putExtra("user", username.getText()
-                );
 
-                startActivity(intent);
-            }
 
-        });
+
+
+
+    }
+});
+
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -103,4 +119,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

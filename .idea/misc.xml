@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/26097/AndroidStudioProjects/VCA-Register/app/src/main/res/layout/activity_main.xml" value="0.11666666666666667" />
+        <entry key="..\:/Users/26097/AndroidStudioProjects/VCA-Register/app/src/main/res/layout/activity_register.xml" value="0.10144927536231885" />
+        <entry key="..\:/Users/26097/AndroidStudioProjects/VCA-Register/app/src/main/res/layout/activity_vca.xml" value="0.10144927536231885" />
+        <entry key="..\:/Users/26097/AndroidStudioProjects/VCA-Register/app/src/main/res/layout/main_ui.xml" value="0.11666666666666667" />
+        <entry key="..\:/Users/26097/AndroidStudioProjects/VCA-Register/app/src/main/res/layout/vcalistitem.xml" value="0.11458333333333333" />
         <entry key="..\:/Users/GLORIA MOSES/AndroidStudioProjects/hsmstart/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.142" />
         <entry key="..\:/Users/GLORIA MOSES/AndroidStudioProjects/hsmstart/app/src/main/res/drawable/btndesign.xml" value="0.142" />
         <entry key="..\:/Users/GLORIA MOSES/AndroidStudioProjects/hsmstart/app/src/main/res/drawable/edtdesign.xml" value="0.142" />
