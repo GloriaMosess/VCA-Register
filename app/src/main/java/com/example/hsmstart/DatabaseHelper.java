@@ -16,24 +16,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table VCA(id Text,name Text,age Text)");
-        db.execSQL("Create Table login_details(username Text,password Text)");
+        db.execSQL("Create Table VCA(id Text,name Text,age Text,username,password)");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("Drop Table VCA");
-        db.execSQL("Drop Table login_details");
     }
 
-    public Boolean vcaRegistration(String username, String password, String id, String name, String age) {
+    public Boolean vcaRegistration(String id, String name, String age,String username, String password) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", id);
         contentValues.put("name", name);
         contentValues.put("age", age);
-
         contentValues.put("username", username);
         contentValues.put("password", password);
 
