@@ -32,8 +32,10 @@ public class Vca extends AppCompatActivity {
                 String vcaText = vcaId.getText().toString();
                 String nameText = Name.getText().toString();
                 String ageText = Age.getText().toString();
+                String userTxt = "admin";
+                String passwordTxt = "1234";
 
-                Boolean checkResults = databaseHelper.vcaRegistration(vcaText,nameText,ageText);
+                Boolean checkResults = databaseHelper.vcaRegistration(vcaText,nameText,ageText,userTxt,passwordTxt);
               if(checkResults == true){
                   Toast.makeText(Vca.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                   Intent i = new Intent(Vca.this,Register.class);
