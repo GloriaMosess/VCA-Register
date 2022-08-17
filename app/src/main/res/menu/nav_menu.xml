@@ -2,17 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <group>
     <item
-        android:title="Home 1"
-        android:icon="@drawable/ic_home"
-        android:id="@+id/home1"
-        ></item>
+        android:title="Profile"
+        android:icon="@drawable/ic_circle"
+        android:id="@+id/profile"
+        >
+
+    </item>
     <item
-        android:title="Home 2"
-        android:icon="@drawable/ic_home"
-        android:id="@+id/home2"></item>
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"
+        android:id="@+id/setting">
+
+    </item>
     <item
-        android:title="Home 3"
-        android:icon="@drawable/ic_home"
-        android:id="@+id/home3"></item>
+        android:title="Logout"
+        android:icon="@drawable/ic_logout"
+        android:id="@+id/logout">
+
+    </item>
 </group>
 </menu>

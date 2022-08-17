@@ -32,7 +32,7 @@ public class Vca extends AppCompatActivity {
                 String vcaText = vcaId.getText().toString();
                 String nameText = Name.getText().toString();
                 String ageText = Age.getText().toString();
-                String userTxt = "allusers";
+                String userTxt = "admin";
                 String passwordTxt = "1234";
 
 
@@ -49,6 +49,8 @@ public class Vca extends AppCompatActivity {
               }
             }
 
+
         });
+
     }
 }

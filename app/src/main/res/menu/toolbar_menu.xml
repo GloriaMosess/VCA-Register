@@ -4,15 +4,20 @@
 
     <item
         android:id="@+id/test1"
-        android:title="Test 1"
+        android:title="Select"
 
         ></item>
     <item
         android:id="@+id/test2"
-        android:title="Test 2"
+        android:title="About"
         ></item>
     <item
         android:id="@+id/test3"
-        android:title="Test 3"
+        android:title="Sort"
+        ></item>
+
+    <item
+        android:id="@+id/test4"
+        android:title="Help"
         ></item>
 </menu>
