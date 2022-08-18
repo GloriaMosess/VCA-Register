@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor displayData() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("Select * from VCA", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("Select id,name,age from VCA", null);
         return cursor;
     }
 
