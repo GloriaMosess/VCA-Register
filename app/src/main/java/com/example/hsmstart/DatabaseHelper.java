@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table VCA(id Text,name Text,age Text,username,password)");
+        db.execSQL("Create Table VCA(id Text,name Text,age Text)");
 
     }
 
@@ -25,22 +25,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("Drop Table VCA");
     }
 
-    public Boolean vcaRegistration(String id, String name, String age,String username, String password) {
+    public Boolean vcaRegistration(String id, String name, String age) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", id);
         contentValues.put("name", name);
         contentValues.put("age", age);
-        contentValues.put("username", username);
-        contentValues.put("password", password);
-
         Long result = database.insert("VCA", null, contentValues);
         return result != -1;
     }
 
     public Cursor displayData() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("Select id,name,age from VCA", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from VCA", null);
         return cursor;
     }
 
