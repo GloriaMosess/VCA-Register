@@ -39,6 +39,8 @@ public class Register extends AppCompatActivity {
     NavigationView navigation;
     Toolbar toolbar;
     public String item;
+    Toolbar test1;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class Register extends AppCompatActivity {
         navigation = findViewById(R.id.navigation);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        test1 = findViewById(R.id.test1);
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -65,7 +68,23 @@ public class Register extends AppCompatActivity {
                 startActivity(addv);
             }
         });
+
+
         data();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String vcaName = (String) listView.getItemAtPosition(position);
+                Intent rV = new Intent(Register.this,RegisterView.class);
+                rV.putExtra("name",vcaName);
+                startActivity(rV);
+            }
+        });
+
+
+
+
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -104,13 +123,17 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(this, "Selected", Toast.LENGTH_LONG).show();
                     break;
                 case R.id.test2:
-                    Toast.makeText(this,"About", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Sorted", Toast.LENGTH_LONG).show();
                     break;
                 case R.id.test3:
-                    Toast.makeText(this,"Sorted",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"About Information",Toast.LENGTH_LONG).show();
+                    Intent aboutinfo = new Intent(Register.this,About.class);
+                    startActivity(aboutinfo);
                     break;
                 case R.id.test4:
-                    Toast.makeText(this,"Help",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Help Information",Toast.LENGTH_LONG).show();
+                    Intent helpinfo = new Intent(Register.this,Help.class);
+                    startActivity(helpinfo);
                     break;
                 case android.R.id.home:
                     drawer.openDrawer(GravityCompat.START);
@@ -120,25 +143,26 @@ public class Register extends AppCompatActivity {
         }
 
 
-
-
-
     public void data(){
         Cursor cursor = databaseHelper.displayData();
         if(cursor.getCount()==0){
             Toast.makeText(Register.this, "No data to show", Toast.LENGTH_LONG).show();
         } else {
             while (cursor.moveToNext()){
-                listItem.add("Country:\t"+"Zambia");
-                listItem.add("ID:\t"+cursor.getString(0));
-                listItem.add("Full Name:\t"+cursor.getString(1));
-                listItem.add("Age:\t"+cursor.getString(2)+"\n\n");
+               // listItem.add("Country:\t"+"Zambia");
+                //listItem.add("ID:\t"+cursor.getString(0));
+                listItem.add(cursor.getString(1));
+                //listItem.add("Age:\t"+cursor.getString(2)+"\n\n");
+
+
 
             }
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,listItem
             );
             listView.setAdapter(adapter);
         }
+
+
 
     }
 }
