@@ -13,7 +13,8 @@ public class Vca extends AppCompatActivity {
     private EditText vcaId,Name,Age;
     private Button addButton;
     public String item;
-
+    int min = 200;
+    int max = 400;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,8 @@ public class Vca extends AppCompatActivity {
         Name = findViewById(R.id.name);
         Age = findViewById(R.id.age);
         addButton = findViewById(R.id.addbtn);
-
+        int id = (int)(Math.random()*(max-min+1)+min);
+        vcaId.setText(String.valueOf(id));
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

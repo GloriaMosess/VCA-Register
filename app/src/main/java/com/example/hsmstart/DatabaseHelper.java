@@ -41,4 +41,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    //display data for VCa
+
+    public Cursor displayDataForSingleVca(String vca) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from VCA WHERE name = '"+ vca.trim() + "'", null);
+        return cursor;
+    }
+
 }

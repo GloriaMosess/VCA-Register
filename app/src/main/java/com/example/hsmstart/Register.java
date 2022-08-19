@@ -41,6 +41,7 @@ public class Register extends AppCompatActivity {
     public String item;
     Toolbar test1;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,19 @@ public class Register extends AppCompatActivity {
 
 
         data();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String vcaName = (String) listView.getItemAtPosition(position);
+                Intent rV = new Intent(Register.this,RegisterView.class);
+                rV.putExtra("name",vcaName);
+                startActivity(rV);
+            }
+        });
+
+
+
 
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -135,16 +149,20 @@ public class Register extends AppCompatActivity {
             Toast.makeText(Register.this, "No data to show", Toast.LENGTH_LONG).show();
         } else {
             while (cursor.moveToNext()){
-//                listItem.add("Country:\t"+"Zambia");
-//                listItem.add("ID:\t"+cursor.getString(0));
+               // listItem.add("Country:\t"+"Zambia");
+                //listItem.add("ID:\t"+cursor.getString(0));
                 listItem.add(cursor.getString(1));
-//                listItem.add("Age:\t"+cursor.getString(2)+"\n\n");
+                //listItem.add("Age:\t"+cursor.getString(2)+"\n\n");
+
+
 
             }
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,listItem
             );
             listView.setAdapter(adapter);
         }
+
+
 
     }
 }
